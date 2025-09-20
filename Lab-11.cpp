@@ -23,13 +23,33 @@ int main () {
     Volunteer* survey = new Volunteer[numVolunteers];
 
     // Loop through each volunteer to collect their survey info
+    for (int i = 0; i < numVolunteers; i++) {
+        cout << "\nVolunteer #" << (i + 1) << endl;
 
-    // Ask for volunteer's name
+        // Ask for volunteer's name
+        cout << "Enter name: ";
+        getline(cin, survey[i].name);
 
-    // Ask how many songs they listened to today
+        // Ask how many songs they listened to today
+        cout << "How many song did " << survey[i].name << " listen to today? ";
+        cin >> survey[i].songCount;
+        cin.ignore();
 
-    // Allocate memory for their list of songs
+        // Allocate memory for their list of songs
+        survey[i].songs = new string[survey[i].songCount];
 
-    // Loop through and get each song title
+        // Loop through and get each song title
+        for (int j = 0; j < survey[i].songCount; j++) {
+            cout << "Enter song #" << (j + 1) << ": ";
+            getline(cin, survey[i].songs[j]);
+        }
+    }
+
+
+    // Display all results
+
+
     
+    // Free memory
+
 }
