@@ -19,7 +19,7 @@ int main () {
     cin.ignore();       // Clears leftover newline so getline() works properly later
 
     // Create a dynamic array of volunteers
-    // We don't know the nummber in advance, so we allocate memory at runtime
+    // We don't know the number in advance, so we allocate memory at runtime
     Volunteer* survey = new Volunteer[numVolunteers];
 
     // Loop through each volunteer to collect their survey info
@@ -31,7 +31,7 @@ int main () {
         getline(cin, survey[i].name);
 
         // Ask how many songs they listened to today
-        cout << "How many song did " << survey[i].name << " listen to today? ";
+        cout << "How many songs did " << survey[i].name << " listen to today? ";
         cin >> survey[i].songCount;
         cin.ignore();
 
@@ -47,9 +47,33 @@ int main () {
 
 
     // Display all results
+    cout << "\n===== SURVEY RESULTS =====" << endl;
+
+    // Go back through each volunteer and print what they entered
+    for (int i = 0; i < numVolunteers; i++) {
+        cout << "Volunteer: " << survey[i].name << endl;
+        cout << "Songs listened today (" << survey[i].songCount <<"): ";
+
+        // If they listened to no songs, print "None"
+        if (survey[i].songCount == 0) {
+            cout << "None" << endl;
+        } else {
+            cout << endl;
+
+            // Otherwise, print their song list
+            for (int j = 0; j < survey[i].songCount; j++) {
+                cout << "  - " << survey[i].songs[j] << endl;
+            }
+        }
+        cout << endl;
+    }
 
 
-    
     // Free memory
+    for (int i = 0; i < numVolunteers; i++) {
+        delete[] survey[i].songs;
+    }
+    delete[] survey;
 
+    return 0;
 }
